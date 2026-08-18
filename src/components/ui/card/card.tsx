@@ -22,11 +22,11 @@ function Card({ className, tone, ...props }: CardProps) {
 }
 
 function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
-  return <div data-slot="card-header" className={cn('grid auto-rows-min items-start gap-1')} {...props} />;
+  return <div data-slot="card-header" className={cn('grid auto-rows-min items-start gap-1', className)} {...props} />;
 }
 
 function CardTitle({ className, ...props }: React.ComponentProps<'h3'>) {
-  return <div data-slot="CardTitle" className={cn('text-sm font-medium text-ink')} {...props} />;
+  return <div data-slot="CardTitle" className={cn('text-sm font-medium text-ink', className)} {...props} />;
 }
 
 function CardDescription({ className, ...props }: React.ComponentProps<'p'>) {
