@@ -4,11 +4,11 @@ import "./globals.css";
 
 const fontIbmMono = IBM_Plex_Mono({
  weight: ['200', '300', '400', '500'],
- variable: '--font-mono',
+ variable: '--font-ibm-mono',
 });
 
 const fontFraunces = Fraunces({
-  variable: '--font-Fraunces',
+  variable: '--font-fraunces',
   subsets: ["latin"],
 });
 
