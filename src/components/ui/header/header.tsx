@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { Waypoints, LayoutDashboard } from 'lucide-react';
+import { Waypoints, ArrowRight } from 'lucide-react';
 
 export function Header() {
   return (
@@ -24,7 +24,7 @@ export function Header() {
           </a>
         </nav>
         <div className="flex items-center gap-3">
-          <Button className="text-[13.5px] hover:brightness-110 transition" icon={<LayoutDashboard />}>
+          <Button icon={<ArrowRight />} iconPosition='right'>
             Open Dashboard
           </Button>
         </div>
