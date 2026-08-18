@@ -5,9 +5,10 @@ import { cn } from '@/utils/cn';
 const cardVariants = cva('flex flex-col gap-2 rounded-xl border p-4 text-ink', {
   variants: {
     tone: {
-      default: 'border-hairline bg-surface',
-      active: 'border-signal/40 bg-surface shadow-[0_0_0_1px_rgb(74_222_148_/_0.08)]',
-      subdued: 'border-hairline bg-surface opacity-70',
+      default: 'border-hairline bg-[#121212]',
+      active: 'border-signal/40 bg-[#181818] shadow-[0_0_0_1px_rgb(74_222_148_/_0.08)]',
+      subdued: 'border-hairline bg-[#181818] opacity-70',
+      stale: 'border-hairline bg-surface shadow-[inset_2px_0_0_0_theme(colors.amber.500/0.5)]',
     },
   },
   defaultVariants: {
@@ -51,13 +52,4 @@ function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return <div data-slot="card-footer" className={cn('flex items-center gap-2', className)} {...props} />;
 }
 
-export {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardAction,
-  CardContent,
-  CardFooter,
-  cardVariants,
-};
+export { Card, CardHeader, CardTitle, CardDescription, CardAction, CardContent, CardFooter, cardVariants };
