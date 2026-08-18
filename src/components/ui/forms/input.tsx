@@ -16,8 +16,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <FieldWrapper label={label} error={error}>
         <input
           type={type}
+          autoComplete='off'
           className={cn(
-            'w-full bg-surface text-[14px] p-[12px_14px] border border-hairline rounded-sm font-inter focus:border-ink-100 text-ink-50 outline-none',
+            'w-full bg-[#121212] text-[14px] p-[12px_14px] border border-hairline rounded-sm font-inter focus:border-ink-100 text-ink-50 outline-none',
           )}
           ref={ref}
           {...registration}
