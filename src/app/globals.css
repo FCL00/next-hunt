@@ -69,7 +69,7 @@
   }
 
   p {
-    @apply text-[16px] text-ink-muted leading-relaxed mb-9 max-w-lg;
+    @apply text-[16px] text-ink-muted leading-relaxed max-w-lg;
   }
 
   h1 > span {
