@@ -61,10 +61,11 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
     asChild?: boolean;
     isLoading?: boolean;
     icon?: React.ReactNode;
+    iconPosition?: 'left' | 'right';
   };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild, children, isLoading, disabled, icon, ...props }, ref) => {
+  ({ className, variant, size, asChild, children, isLoading, disabled, icon, iconPosition = 'left', ...props }, ref) => {
     const isDisabled = disabled || isLoading;
     const Component = asChild ? Slot : 'button';
 
@@ -75,9 +76,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={isDisabled}
         {...props}
       >
-        {isLoading && 'Loading...'}
-        {!isLoading && icon && <span>{icon}</span>}
-        <span>{children}</span>
+        {isLoading ? (
+          'Loading...'
+        ) : (
+          <>
+            {icon && iconPosition === 'left' && <span>{icon}</span>}
+            <span>{children}</span>
+            {icon && iconPosition === 'right' && <span>{icon}</span>}
+          </>
+        )}
       </Component>
     );
   },
