@@ -10,7 +10,7 @@ export function Header() {
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="font-fraunces flex items-center gap-2">
           <Waypoints className="text-signal" />
-          <span>Waypoint</span>
+          <span className='font-bold'>NextHunt</span>
         </div>
         <nav className="hidden md:flex items-center gap-8 text-[13.5px] text-ink-muted">
           <a href="#pipeline" className="hover:text-ink transition-colors">
