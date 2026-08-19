@@ -12,6 +12,9 @@ export const paths = {
     forgotPassword: {
       getHref: () => '/forgot-password',
     },
+    resetPassword: {
+      getHref: () => '/reset-password',
+    },
   },
   dashboard: {
     app: {
