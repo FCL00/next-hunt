@@ -24,43 +24,41 @@ export default function signInForm() {
         toast.error(ctx.error.message);
       },
       onSuccess: () => {
-        toast.success('Login successful!')
+        toast.success('Login successful!');
         router.replace(paths.dashboard.app.getHref());
       },
     });
   };
 
   return (
-    <div className="w-full flex items-center justify-center min-h-screen">
-      <div className="sm:w-full md:max-w-md lg:max-w-lg">
-        <h1>Welcome to NextHunt!</h1>
-        <p className="mb-8 text-[14px] text-ink-100">
-          Don't have an account yet?{' '}
-          <Link className="text-ink-50 border-b border-b-ink-50" href={paths.auth.signUp.getHref()}>
-            Create an Account
-          </Link>
-        </p>
-        <Button variant="secondary" className="w-full">
-          Continue with Github
+    <div className="sm:w-full md:max-w-md lg:max-w-lg">
+      <h1>Welcome to NextHunt!</h1>
+      <p className="mb-8 text-[14px] text-ink-100">
+        Don't have an account yet?{' '}
+        <Link className="text-ink-50 border-b border-b-ink-50" href={paths.auth.signUp.getHref()}>
+          Create an Account
+        </Link>
+      </p>
+      <Button variant="secondary" className="w-full">
+        Continue with Github
+      </Button>
+      <div className="divider"> or </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input type="email" label="Email" registration={register('email')} error={errors.email} placeholder="you@example.com" />
+        <Input
+          type="password"
+          label="Password"
+          registration={register('password')}
+          error={errors.password}
+          placeholder="••••••••"
+        />
+        <Link className="mb-1 border-none" variant="ghost" href={paths.auth.forgotPassword.getHref()}>
+          Forgot password?
+        </Link>
+        <Button className="w-full" disabled={isSubmitting} isLoading={isSubmitting}>
+          Login
         </Button>
-        <div className="divider"> or </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Input type="email" label="Email" registration={register('email')} error={errors.email} placeholder="you@example.com" />
-          <Input
-            type="password"
-            label="Password"
-            registration={register('password')}
-            error={errors.password}
-            placeholder="••••••••"
-          />
-          <Link className="mb-1 border-none" variant="ghost" href={paths.auth.forgotPassword.getHref()}>
-            Forgot password?
-          </Link>
-          <Button className="w-full" disabled={isSubmitting} isLoading={isSubmitting}>
-            Login
-          </Button>
-        </form>
-      </div>
+      </form>
     </div>
   );
 }

@@ -34,54 +34,52 @@ export default function SignUpForm() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      <div className="sm:w-full md:max-w-md lg:max-w-lg">
-        <h1 className="max-w-sm">Get Started!</h1>
-        <p className="mb-8 text-[14px] text-ink-100">
-          Already have an Account?{' '}
-          <Link className="text-ink-50 border-b border-b-ink-50" href={paths.auth.signIn.getHref()}>
-            Login in here
+    <div className="sm:w-full md:max-w-md lg:max-w-lg">
+      <h1 className="max-w-sm">Get Started!</h1>
+      <p className="mb-8 text-[14px] text-ink-100">
+        Already have an Account?{' '}
+        <Link className="text-ink-50 border-b border-b-ink-50" href={paths.auth.signIn.getHref()}>
+          Login in here
+        </Link>
+      </p>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          type="text"
+          label="Name"
+          registration={register('name')}
+          error={errors.name}
+          placeholder="Enter your display name"
+        />
+        <Input type="email" label="Email" registration={register('email')} error={errors.email} placeholder="you@example.com" />
+        <Input
+          type="password"
+          label="Password"
+          registration={register('password')}
+          error={errors.password}
+          placeholder="••••••••"
+        />
+        <Input
+          type="password"
+          label="Confirm Password"
+          registration={register('confirmPassword')}
+          error={errors.confirmPassword}
+          placeholder="••••••••"
+        />
+        <Button type="submit" className="w-full text-[14.5px] p-[13px_16px]">
+          Create Account
+        </Button>
+        <div className="mt-7 text-[12px] text-ink-200 leading-[1.6] text-center">
+          By continuing you agree to Meridian's{' '}
+          <Link variant="muted" href={'/terms'}>
+            Terms
+          </Link>{' '}
+          and{' '}
+          <Link variant="muted" href="/privacy">
+            Privacy Policy
           </Link>
-        </p>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            type="name"
-            label="Name"
-            registration={register('name')}
-            error={errors.name}
-            placeholder="Enter your display name"
-          />
-          <Input type="email" label="Email" registration={register('email')} error={errors.email} placeholder="you@example.com" />
-          <Input
-            type="password"
-            label="Password"
-            registration={register('password')}
-            error={errors.password}
-            placeholder="••••••••"
-          />
-          <Input
-            type="password"
-            label="Confirm Password"
-            registration={register('confirmPassword')}
-            error={errors.confirmPassword}
-            placeholder="••••••••"
-          />
-          <Button type="submit" className="w-full text-[14.5px] p-[13px_16px]">
-            Create Account
-          </Button>
-          <div className="mt-7 text-[12px] text-ink-200 leading-[1.6] text-center">
-            By continuing you agree to Meridian's{' '}
-            <Link variant="muted" href={'/terms'}>
-              Terms
-            </Link>{' '}
-            and{' '}
-            <Link variant="muted" href="/privacy">
-              Privacy Policy
-            </Link>
-            .
-          </div>
-        </form>
-      </div>
+          .
+        </div>
+      </form>
     </div>
   );
 }

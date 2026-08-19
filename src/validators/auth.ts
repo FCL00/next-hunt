@@ -28,6 +28,30 @@ export const signUpInputSchema = z
     path: ['confirmPassword'],
   });
 
+export const forgotPasswordInputSchema = z.object({
+  email: z.email('Invalid Email'),
+});
+
+export const resetPasswordInputSchema = z.object({
+  password: z
+    .string({ message: 'Password is required' })
+    .min(8, { message: 'Password must be at least 8 characters!' })
+    .refine((val) => /[A-Z]/.test(val), {
+      message: 'Password must contain at least one uppercase letter',
+    })
+    .refine((val) => /[0-9]/.test(val), {
+      message: 'Password must contain at least one number',
+    })
+    .refine((val) => /[^A-Za-z0-9]/.test(val), {
+      message: 'Password must contain at least one special symbol',
+    }),
+  confirmPassword: z.string({ message: 'Please confirm your password' }),
+});
+
 export type SignUpInput = z.infer<typeof signUpInputSchema>;
 
 export type SignInInput = z.infer<typeof signInInputSchema>;
+
+export type ForgotInput = z.infer<typeof forgotPasswordInputSchema>;
+
+export type ResetPasswordInput = z.infer<typeof resetPasswordInputSchema>;
