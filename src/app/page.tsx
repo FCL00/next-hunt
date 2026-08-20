@@ -1,13 +1,15 @@
+'use client';
 import { Header } from '@/components/ui/header';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Terminal } from '@/components/ui/terminal';
 import { ArrowRight } from 'lucide-react';
 import { ContentLayout as Layout } from '@/components/layout/content-layout';
-
+import { paths } from '@/config/paths';
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
   return (
     <main>
       <Header />
@@ -19,19 +21,16 @@ export default function Home() {
         <h1>
           Every application, <br /> <span>exactly</span> where it stands.
         </h1>
-        <p className='mb-9'>
-          Waypoint replaces the spreadsheet with a living pipeline so you always know what's applied, what's waiting on you, and
+        <p className="mb-9">
+          NextHunt replaces the spreadsheet with a living pipeline so you always know what's applied, what's waiting on you, and
           what's gone quiet.
         </p>
         <div className="flex items-center gap-4">
-          <Button>Start Tracking - Free</Button>
-          <Button icon={<ArrowRight />} iconPosition="right" variant="ghost" className="font-medium">
-            See how it works
-          </Button>
+          <Button onClick={() => router.push(paths.auth.signIn.getHref())}>Start Tracking - Free</Button>
         </div>
       </Layout>
       <Layout className="pt-0">
-        <Terminal/>
+        <Terminal />
       </Layout>
     </main>
   );
