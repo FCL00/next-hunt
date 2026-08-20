@@ -11,6 +11,8 @@ const meta = {
   args: {
     size: 'sm',
     children: 'Click Me',
+    asChild: false,
+    isLoading: false,
   },
   argTypes: {
     variant: {
@@ -20,6 +22,12 @@ const meta = {
     size: {
       control: { type: 'select' },
       options: sizeOptions,
+    },
+    asChild: {
+      control: { type: 'boolean' },
+    },
+    isLoading: {
+      control: { type: 'boolean' },
     },
   },
 } satisfies Meta<typeof Button>;
