@@ -2,7 +2,7 @@ import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
 import { PrismaClient } from '@/lib/generated/prisma/client';
-import { sendForgotPasswordEmail, sendVerificationEmail } from '@/lib/email';
+import { sendForgotPasswordEmail, sendVerificationEmail, sendWelcomeEmail } from '@/lib/email';
 
 const adapter = new PrismaMariaDb({
   host: process.env.DATABASE_HOST_NAME as string,
@@ -23,16 +23,29 @@ export const auth = betterAuth({
     },
   },
   emailVerification: {
-    sendVerificationEmail: async({ user, url }) => {
-      void sendVerificationEmail({ email: user.email, name: user.name, url})
-    }
+    sendVerificationEmail: async ({ user, url }) => {
+      void sendVerificationEmail({ email: user.email, name: user.name, url });
+    },
   },
-  // socialProviders: {
-  //   github: {
-  //     clientId: process.env.GITHUB_CLIENT_ID as string,
-  //     clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
-  //   }
-  // },
+  socialProviders: {
+    github: {
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    },
+  },
+  // NOTE: currently not available in local
+  databaseHooks: {
+    user: {
+      create: {
+        after: async (user) => {
+          void sendWelcomeEmail({
+            email: user.email,
+            name: user.name,
+          });
+        },
+      },
+    },
+  },
   database: prismaAdapter(prisma, {
     provider: 'mysql', // or "mysql", "postgresql", ...etc
   }),

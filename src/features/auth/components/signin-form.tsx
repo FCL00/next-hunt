@@ -6,7 +6,7 @@ import { paths } from '@/config/paths';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type SignInInput, signInInputSchema } from '@/validators/auth';
-import { signIn } from '@/lib/auth-client';
+import { signIn, signInWithGithub } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
@@ -39,7 +39,10 @@ export default function signInForm() {
           Create an Account
         </Link>
       </p>
-      <Button variant="secondary" className="w-full">
+      <Button 
+        onClick={() => signInWithGithub()} 
+        variant="secondary" 
+        className="w-full">
         Continue with Github
       </Button>
       <div className="divider"> or </div>
