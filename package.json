@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "email:dev": "email dev --dir src/components/emails"
+    "email:dev": "email dev --dir src/components/emails",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.1",
@@ -33,17 +35,30 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "latest",
     "@react-email/ui": "6.9.2",
+    "@storybook/addon-a11y": "^10.5.9",
+    "@storybook/addon-docs": "^10.5.9",
+    "@storybook/addon-styling-webpack": "^3.0.2",
+    "@storybook/addon-vitest": "^10.5.9",
+    "@storybook/nextjs-vite": "^10.5.9",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/pg": "^8.23.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/browser-playwright": "latest",
+    "@vitest/coverage-v8": "latest",
     "eslint": "^9",
     "eslint-config-next": "16.3.1",
+    "eslint-plugin-storybook": "^10.5.9",
+    "playwright": "latest",
     "prisma": "^7.9.1",
+    "storybook": "^10.5.9",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite": "latest",
+    "vitest": "latest"
   },
   "packageManager": "pnpm@10.33.2"
 }
