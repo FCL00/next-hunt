@@ -20,7 +20,6 @@ const buttonVariants = cva(
         default: 'h-10 px-5 text-[13.5px]',
         sm: 'h-8 rounded px-3.5 text-xs',
         lg: 'h-12 px-7 text-sm',
-        icon: 'h-10 w-10 shrink-0',
       },
       disabled: {
         false: null,
@@ -56,13 +55,19 @@ const buttonVariants = cva(
   },
 );
 
-export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof buttonVariants> & {
+type ButtonVariantProps = VariantProps<typeof buttonVariants>;
+
+export type ButtonProps =
+  React.ButtonHTMLAttributes<HTMLButtonElement> &
+  ButtonVariantProps & {
     asChild?: boolean;
     isLoading?: boolean;
     icon?: React.ReactNode;
     iconPosition?: 'left' | 'right';
   };
+
+export type ButtonVariants = NonNullable<ButtonVariantProps['variant']>;
+export type ButtonSize = NonNullable<ButtonVariantProps['size']>;
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild, children, isLoading, disabled, icon, iconPosition = 'left', ...props }, ref) => {
