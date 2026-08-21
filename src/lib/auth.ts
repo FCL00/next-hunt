@@ -3,6 +3,9 @@ import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
 import { PrismaClient } from '@/lib/generated/prisma/client';
 import { sendForgotPasswordEmail, sendVerificationEmail, sendWelcomeEmail } from '@/lib/email';
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { paths } from '@/config/paths';
 
 const adapter = new PrismaMariaDb({
   host: process.env.DATABASE_HOST_NAME as string,
@@ -50,3 +53,10 @@ export const auth = betterAuth({
     provider: 'mysql', // or "mysql", "postgresql", ...etc
   }),
 });
+
+export const getSession = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  return session;
+};
