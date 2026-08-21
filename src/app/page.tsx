@@ -1,15 +1,13 @@
-'use client';
 import { Header } from '@/components/ui/header';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Link } from '@/components/ui/link';
+import { Badge } from '@/components/ui/badge';
 import { Terminal } from '@/components/ui/terminal';
 import { ArrowRight } from 'lucide-react';
 import { ContentLayout as Layout } from '@/components/layout/content-layout';
 import { paths } from '@/config/paths';
-import { useRouter } from 'next/navigation';
 
 export default function Home() {
-  const router = useRouter();
   return (
     <main>
       <Header />
@@ -26,7 +24,14 @@ export default function Home() {
           what's gone quiet.
         </p>
         <div className="flex items-center gap-4">
-          <Button onClick={() => router.push(paths.auth.signIn.getHref())}>Start Tracking - Free</Button>
+          <Button asChild>
+            <Link href={paths.auth.signIn.getHref()}>
+              Start Tracking - Free{' '}
+              <span>
+                <ArrowRight />
+              </span>
+            </Link>
+          </Button>
         </div>
       </Layout>
       <Layout className="pt-0">
