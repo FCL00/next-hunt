@@ -8,7 +8,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-signal text-void hover:brightness-110 active:brightness-100',
+        primary: 'bg-signal text-void hover:brightness-110 hover:text-void active:brightness-100',
         secondary: 'border border-hairline bg-white text-void hover:bg-white/90',
         outline: 'border border-hairline bg-transparent text-ink hover:bg-surface-100 hover:border-signal/40',
         ghost: 'text-ink-muted',
@@ -57,8 +57,7 @@ const buttonVariants = cva(
 
 type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
-export type ButtonProps =
-  React.ButtonHTMLAttributes<HTMLButtonElement> &
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   ButtonVariantProps & {
     asChild?: boolean;
     isLoading?: boolean;
@@ -76,12 +75,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <Component
-        className={cn(buttonVariants({ variant, size, disabled: !!isDisabled, className }))}
+        className={cn(buttonVariants({ variant, size, disabled: !!isDisabled }), className)}
         ref={ref}
         disabled={isDisabled}
         {...props}
       >
-        {isLoading ? (
+        {asChild ? (
+          children
+        ) : isLoading ? (
           'Loading...'
         ) : (
           <>

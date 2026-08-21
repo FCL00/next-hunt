@@ -25,7 +25,7 @@ export default function ResetForm() {
   const onSubmit = async (credentials: ResetPasswordInput) => {
     if (!token) {
       toast.error('Invalid or expired password reset link.');
-      router.push(paths.auth.forgotPassword.getHref());
+      router.replace(paths.auth.forgotPassword.getHref());
       return;
     }
     await resetPassword({
