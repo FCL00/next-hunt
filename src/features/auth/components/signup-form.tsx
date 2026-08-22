@@ -2,7 +2,7 @@
 import { paths } from '@/config/paths';
 import { Link } from '@/components/ui/link';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/forms';
+import { FormInput } from '@/components/ui/forms';
 import { type SignUpInput, signUpInputSchema } from '@/validators/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -43,22 +43,22 @@ export default function SignUpForm() {
         </Link>
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
+        <FormInput
           type="text"
           label="Name"
           registration={register('name')}
           error={errors.name}
           placeholder="Enter your display name"
         />
-        <Input type="email" label="Email" registration={register('email')} error={errors.email} placeholder="you@example.com" />
-        <Input
+        <FormInput type="email" label="Email" registration={register('email')} error={errors.email} placeholder="you@example.com" />
+        <FormInput
           type="password"
           label="Password"
           registration={register('password')}
           error={errors.password}
           placeholder="••••••••"
         />
-        <Input
+        <FormInput
           type="password"
           label="Confirm Password"
           registration={register('confirmPassword')}
@@ -70,11 +70,11 @@ export default function SignUpForm() {
         </Button>
         <div className="mt-7 text-[12px] text-ink-200 leading-[1.6] text-center">
           By continuing you agree to Meridian's{' '}
-          <Link variant="muted" href={'/terms'}>
+          <Link href={'/terms'}>
             Terms
           </Link>{' '}
           and{' '}
-          <Link variant="muted" href="/privacy">
+          <Link href="/privacy">
             Privacy Policy
           </Link>
           .
