@@ -17,8 +17,8 @@ const buttonVariants = cva(
         destructive: 'border border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500/15',
       },
       size: {
-        default: 'h-10 px-5 text-[13.5px]',
         sm: 'h-8 rounded px-3.5 text-xs',
+        md: 'h-10 px-5 text-[13.5px]',
         lg: 'h-12 px-7 text-sm',
       },
       disabled: {
@@ -50,7 +50,7 @@ const buttonVariants = cva(
     ],
     defaultVariants: {
       variant: 'primary',
-      size: 'default',
+      size: 'md',
     },
   },
 );

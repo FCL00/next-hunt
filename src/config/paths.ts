@@ -2,6 +2,15 @@ export const paths = {
   home: {
     getHref: () => '/',
   },
+  privacy: {
+    getHref: () => '/privacy',
+  },
+  terms: {
+    getHref: () => '/terms',
+  },
+  faq: {
+    getHref: () => '/faq',
+  },
   auth: {
     signIn: {
       getHref: () => '/sign-in',
@@ -19,6 +28,12 @@ export const paths = {
   dashboard: {
     app: {
       getHref: () => '/dashboard',
+    },
+    settings: {
+      getHref: () => '/settings',
+    },
+    profile: {
+      getHref: () => '/profile',
     },
   },
 };
