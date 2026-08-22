@@ -13,20 +13,9 @@ export async function Header() {
           <Waypoints className="text-signal" />
           <span className="font-bold">NextHunt</span>
         </div>
-        <nav className="hidden md:flex items-center gap-8 text-[13.5px] text-ink-muted">
-          <a href="#pipeline" className="hover:text-ink transition-colors">
-            Pipeline
-          </a>
-          <a href="#features" className="hover:text-ink transition-colors">
-            Features
-          </a>
-          <a href="#pricing" className="hover:text-ink transition-colors">
-            Pricing
-          </a>
-        </nav>
         <div className="flex items-center gap-3">
           {!session?.user && <Link href={paths.auth.signIn.getHref()}>Sign-in</Link>}
-          <Button asChild>
+          <Button className='hidden sm:flex' asChild>
             <Link href={session?.user ? paths.dashboard.app.getHref() : paths.auth.signIn.getHref()}>
               <div className="flex items-center gap-3">
                 <span>Open Dashboard</span>
