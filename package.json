@@ -12,6 +12,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@dnd-kit/dom": "^0.5.0",
     "@hookform/resolvers": "^5.9.1",
     "@prisma/adapter-mariadb": "^7.9.1",
     "@prisma/adapter-pg": "^7.9.1",
