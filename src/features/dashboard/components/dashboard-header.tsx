@@ -1,7 +1,7 @@
 'use client';
 import { Input } from '@/components/ui/forms';
 import { Button } from '@/components/ui/button/button';
-import { ApplicationForm as CreateForm } from '@/features/dashboard/components/application-form';
+import { ApplicationForm as CreateForm } from '@/features/applications/components/application-form';
 import { usePathname } from 'next/navigation';
 import { paths } from '@/config/paths';
 

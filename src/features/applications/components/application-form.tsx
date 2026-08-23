@@ -1,15 +1,13 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormInput, Field } from '@/components/ui/forms';
 import { TextArea } from '@/components/ui/textarea';
-import {
-  type ApplicationInput,
-  ApplicationSchema,
-} from '@/validators/application';
+import { type ApplicationInput, ApplicationSchema } from '@/validators/application';
+import { useCreateApplication, useUpdateApplication } from '@/features/applications/hooks/use-application';
 
 import {
   Modal,
@@ -22,7 +20,17 @@ import {
   ModalDescription,
 } from '@/components/ui/modal';
 
-export function ApplicationForm() {
+type ApplicationFormsProps = {
+  applicationId?: string;
+  defaultValues?: ApplicationInput;
+};
+
+export function ApplicationForm({ applicationId, defaultValues }: ApplicationFormsProps) {
+  const isEditMode = Boolean(applicationId);
+  const [open, setOpen] = useState(false);
+  const createApplication = useCreateApplication();
+  const updateApplication = useUpdateApplication();
+
   const {
     register,
     handleSubmit,
@@ -32,36 +40,41 @@ export function ApplicationForm() {
     resolver: zodResolver(ApplicationSchema),
   });
 
+  useEffect(() => {
+    if (open) {
+      reset(defaultValues);
+    }
+  }, [open, defaultValues, reset]);
+
   const handleOpenChange = (open: boolean) => {
     setOpen(open);
     if (!open) {
-      reset();
+      reset(defaultValues);
     }
   };
 
-  const onSubmit = (data: ApplicationInput) => {
-    console.log(data);
+  const onSubmit = async (application: ApplicationInput) => {
+    if (isEditMode) {
+      if (!applicationId) return;
+      updateApplication.mutate({ applicationId: applicationId, application: application });
+    } else {
+      createApplication.mutate(application)
+    }
     setOpen(false);
   };
 
-  const [open, setOpen] = useState(false);
   return (
     <>
-      <Button
-        size="sm"
-        icon={<Plus />}
-        iconPosition="left"
-        onClick={() => setOpen(true)}
-      >
+      <Button size="sm" icon={<Plus />} iconPosition="left" onClick={() => setOpen(true)}>
         New Application
       </Button>
       <Modal open={open} onOpenChange={handleOpenChange}>
         <ModalContent>
           <ModalHeader>
-            <ModalDescription className='text-xs'>Track a new job application</ModalDescription>
+            <ModalDescription className="text-xs">Track a new job application</ModalDescription>
             <ModalTitle>New Application</ModalTitle>
           </ModalHeader>
-          <form className='p-4' onSubmit={handleSubmit(onSubmit)}>
+          <form className="p-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-2">
               <FormInput
                 id="company"
@@ -109,22 +122,12 @@ export function ApplicationForm() {
               error={errors.jobUrl}
             />
 
-            <Field
-              id="description"
-              label="Description (optional)"
-              error={errors.description}
-            >
-              <TextArea
-                placeholder="Describe the position..."
-                {...register('description')}
-              />
+            <Field id="description" label="Description (optional)" error={errors.description}>
+              <TextArea placeholder="Describe the position..." {...register('description')} />
             </Field>
 
             <Field id="notes" label="Notes (optional)" error={errors.notes}>
-              <TextArea
-                {...register('notes')}
-                placeholder="Add any notes about this application..."
-              />
+              <TextArea {...register('notes')} placeholder="Add any notes about this application..." />
             </Field>
             <ModalFooter>
               <ModalClose asChild>
@@ -132,11 +135,7 @@ export function ApplicationForm() {
                   Cancel
                 </Button>
               </ModalClose>
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                isLoading={isSubmitting}
-              >
+              <Button type="submit" disabled={isSubmitting} isLoading={isSubmitting}>
                 Save Application
               </Button>
             </ModalFooter>
