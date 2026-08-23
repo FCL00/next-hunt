@@ -16,7 +16,7 @@ const adapter = new PrismaMariaDb({
   database: process.env.DATABASE_NAME,
 });
 
-const prisma = new PrismaClient({ adapter });
+export const prisma = new PrismaClient({ adapter });
 export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
