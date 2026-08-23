@@ -1,8 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/forms';
+
 import { Plus, Waypoints } from 'lucide-react';
-import { ApplicationForm as CreateForm } from '@/features/dashboard/components/application-form';
 import { SideBar } from '@/features/dashboard/components/sidebar';
+import { DashboardHeader } from '@/features/dashboard/components/dashboard-header';
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,16 +16,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         <SideBar />
       </div>
       <div className="right">
-        <div className="p-4 border-b border-dark-500 flex justify-end">
-          <div className="flex items-center max-w-lg gap-2 w-full">
-            <Input
-              className="h-8 px-3.5 text-xs"
-              type="text"
-              placeholder="Search applications"
-            />
-            <CreateForm />
-          </div>
-        </div>
+        <DashboardHeader />
         {children}
       </div>
     </div>
