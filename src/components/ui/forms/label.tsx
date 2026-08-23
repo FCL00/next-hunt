@@ -3,7 +3,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
 import * as React from 'react';
 
-const LabelVariants = cva('text-ink-50', {
+const LabelVariants = cva('text-ink-muted', {
   variants: {
     size: {
       xs: 'text-[12.5px]',
