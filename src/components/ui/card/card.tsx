@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
 
-const cardVariants = cva('flex flex-col gap-2 rounded-xl border p-4 text-ink', {
+const cardVariants = cva('flex flex-col gap-2 rounded-sm border p-4 text-ink', {
   variants: {
     tone: {
       default: 'border-dark-500 bg-dark-800',
