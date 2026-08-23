@@ -29,6 +29,12 @@ export const paths = {
     app: {
       getHref: () => '/dashboard',
     },
+    jobs: {
+      getHref: () => '/jobs',
+    },
+    resume: {
+      getHref: () => '/resume',
+    },
     settings: {
       getHref: () => '/settings',
     },
