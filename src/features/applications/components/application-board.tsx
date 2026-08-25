@@ -4,7 +4,7 @@ import { ApplicationColumn } from './application-column';
 
 export function ApplicationBoard() {
   const { data: applications = [], isPending, isError, error } = useApplications();
-
+  
   if (isPending) {
     // TODO: REPLACE WITH SKELETON
     return <div>Loading applications...</div>;
@@ -22,10 +22,12 @@ export function ApplicationBoard() {
     );
   }
 
-  return <div className="mt-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-    <ApplicationColumn stage="APPLIED" applications={applications}/>
-    <ApplicationColumn stage="SCREENING" applications={applications}/>
-    <ApplicationColumn stage="INTERVIEW" applications={applications}/>
-    <ApplicationColumn stage="OFFER" applications={applications}/>
-  </div>;
+  return (
+    <div className="mt-8 grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ApplicationColumn stage="APPLIED" applications={applications} />
+      <ApplicationColumn stage="SCREENING" applications={applications} />
+      <ApplicationColumn stage="INTERVIEW" applications={applications} />
+      <ApplicationColumn stage="OFFER" applications={applications} />
+    </div>
+  );
 }
