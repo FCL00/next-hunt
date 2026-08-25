@@ -4,8 +4,6 @@ import { PrismaMariaDb } from '@prisma/adapter-mariadb';
 import { PrismaClient } from '@/lib/generated/prisma/client';
 import { sendForgotPasswordEmail, sendVerificationEmail, sendWelcomeEmail } from '@/lib/email';
 import { headers } from 'next/headers';
-import { redirect } from 'next/navigation';
-import { paths } from '@/config/paths';
 
 const adapter = new PrismaMariaDb({
   host: process.env.DATABASE_HOST_NAME as string,
