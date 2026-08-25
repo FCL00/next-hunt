@@ -1,19 +1,35 @@
 'use client';
 import { Input } from '@/components/ui/forms';
-import { Button } from '@/components/ui/button/button';
-import { ApplicationForm as CreateForm } from '@/features/dashboard/components/application-form';
+import { ApplicationForm as CreateForm } from '@/features/applications/components/application-form';
 import { usePathname } from 'next/navigation';
 import { paths } from '@/config/paths';
+import { Button } from '@/components/ui/button';
+import { Modal, ModalContent, ModalHeader, ModalTitle, ModalDescription } from '@/components/ui/modal';
+import { Plus } from 'lucide-react';
+import { useState } from 'react';
 
 export function DashboardHeader() {
   const pathName = usePathname();
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       {pathName === paths.dashboard.app.getHref() && (
         <div className="p-4 border-b border-dark-500 flex justify-end">
           <div className="flex items-center max-w-lg gap-2 w-full">
             <Input className="h-8 px-3.5 text-xs" type="text" placeholder="Search applications" />
-            <CreateForm />
+            <Button size="sm" icon={<Plus />} iconPosition="left" onClick={() => setOpen(true)}>
+              New Application
+            </Button>
+            <Modal open={open} onOpenChange={() => setOpen((prev) => !prev)}>
+              <ModalContent>
+                <ModalHeader>
+                  <ModalDescription>Track a new job application</ModalDescription>
+                  <ModalTitle>New Application</ModalTitle>
+                </ModalHeader>
+                <CreateForm onCancel={() => setOpen(false)} onSuccess={() => setOpen(false)}/>
+              </ModalContent>
+            </Modal>
           </div>
         </div>
       )}

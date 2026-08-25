@@ -11,3 +11,22 @@ export const ApplicationSchema = z.object({
 });
 
 export type ApplicationInput = z.infer<typeof ApplicationSchema>;
+
+export type ApplicationStage = 'APPLIED' | 'SCREENING' | 'INTERVIEW' | 'OFFER' | 'REJECTED';
+
+export type Application = {
+  id: string;
+  userId: string;
+  company: string;
+  role: string;
+  location: string | null;
+  salary: string | null;
+  jobUrl: string | null;
+  description: string | null;
+  notes: string | null;
+  state: ApplicationStage;
+  stageChangedAt: Date;
+  appliedAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
+};

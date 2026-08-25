@@ -15,6 +15,7 @@ const buttonVariants = cva(
         link: 'h-auto p-0 text-signal underline-offset-4 hover:underline',
         signal: 'border border-signal/30 bg-signal/10 text-signal hover:bg-signal/15',
         destructive: 'border border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500/15',
+        unstyled: 'p-0 h-auto rounded-none font-normal bg-transparent border-0 text-inherit hover:bg-transparent',
       },
       size: {
         sm: 'h-8 rounded px-3.5 text-xs',

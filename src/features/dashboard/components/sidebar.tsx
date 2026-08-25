@@ -1,6 +1,6 @@
 import { Link } from '@/components/ui/link';
 import { paths } from '@/config/paths';
-import { LayoutDashboard, Settings, User, Briefcase, FilePenLine } from 'lucide-react';
+import { LayoutDashboard, Settings, User, Search, FilePenLine } from 'lucide-react';
 
 type SideBarItemProps = {
   name: string;
@@ -24,11 +24,11 @@ export function SideBar() {
     {
       path: paths.dashboard.app.getHref(),
       icon: <LayoutDashboard  className='w-4 h-4'/>,
-      name: 'Dashboard',
+      name: 'Job Applications',
     },
     {
       path: paths.dashboard.jobs.getHref(),
-      icon: <Briefcase  className='w-4 h-4'/>,
+      icon: <Search  className='w-4 h-4'/>,
       name: 'Job Search',
     },
     {
