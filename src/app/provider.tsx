@@ -9,7 +9,7 @@ type AppProviderProps = {
 };
 
 export function AppProvider({ children }: AppProviderProps) {
-  const queryClient = new QueryClient();
+  const [queryClient] = React.useState(() => new QueryClient());
   return (
     <>
       <QueryClientProvider client={queryClient}>
