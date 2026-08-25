@@ -6,6 +6,7 @@ import {
   updateApplication,
   deleteApplication,
   updateApplicationStage,
+  getApplicationById,
 } from '../actions/job-applications';
 import { ApplicationStage, type ApplicationInput } from '@/validators/application';
 import { toast } from 'sonner';
@@ -17,6 +18,13 @@ export function useApplications() {
     queryKey: applicationQueryKey,
     queryFn: getApplications,
   });
+}
+
+export function useApplication(id: string) {
+  return useQuery({
+    queryKey: [applicationQueryKey, id],
+    queryFn: () => getApplicationById(id),
+  })
 }
 
 export function useCreateApplication() {
@@ -57,7 +65,7 @@ export function useUpdateApplication() {
 export function useDeleteApplication() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ applicationId }: { applicationId: string }) => deleteApplication(applicationId),
+    mutationFn: (applicationId: string) => deleteApplication(applicationId),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: applicationQueryKey,
@@ -83,6 +91,6 @@ export function useUpdateApplicationStage() {
     },
     onError: (error) => {
       toast.error(error.message);
-    }
+    },
   });
 }
