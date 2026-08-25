@@ -89,7 +89,7 @@ const ModalHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElemen
 ModalHeader.displayName = 'ModalHeader';
 
 const ModalFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return <div className={cn('mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end', className)} {...props} />;
+  return <div className={cn('p-2 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end', className)} {...props} />;
 };
 
 ModalFooter.displayName = 'ModalFooter';
