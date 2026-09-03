@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
 } from '@/components/ui/dropdown-menu';
 import { Ellipsis } from 'lucide-react';
-import { type ApplicationStage } from '@/validators/application';
+import { type ApplicationStage } from '@/types/validators/application';
 import { useUpdateApplicationStage } from '../hooks/use-application';
 
 type ApplicationDropdownMenuProps = {

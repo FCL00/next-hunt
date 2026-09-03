@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { FormInput, Field } from '@/components/ui/forms';
 import { TextArea } from '@/components/ui/textarea';
-import { type Application, type ApplicationInput, ApplicationSchema } from '@/validators/application';
+import { type Application, type ApplicationInput, ApplicationSchema } from '@/types/validators/application';
 import { useUpdateApplication, useCreateApplication } from '../hooks/use-application';
 
 type ApplicationFormsProps = {
