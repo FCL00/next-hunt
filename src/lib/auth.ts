@@ -4,14 +4,15 @@ import { PrismaMariaDb } from '@prisma/adapter-mariadb';
 import { PrismaClient } from '@/lib/generated/prisma/client';
 import { sendForgotPasswordEmail, sendVerificationEmail, sendWelcomeEmail } from '@/lib/email';
 import { headers } from 'next/headers';
+import { env } from '@/lib/env/server';
 
 const adapter = new PrismaMariaDb({
-  host: process.env.DATABASE_HOST_NAME as string,
-  port: parseInt(process.env.DATABASE_PORT as string),
+  host: env.DATABASE_HOST_NAME,
+  port: env.DATABASE_PORT,
   connectionLimit: 5,
-  user: process.env.DATABASE_USER,
-  password: process.env.DATABASE_PASSWORD,
-  database: process.env.DATABASE_NAME,
+  user: env.DATABASE_USER,
+  password: env.DATABASE_PASSWORD,
+  database: env.DATABASE_NAME,
 });
 
 export const prisma = new PrismaClient({ adapter });

@@ -1,13 +1,10 @@
 import { createAuthClient } from 'better-auth/react';
+import { env } from '@/lib/env/client';
 
-if(!process.env.NEXT_PUBLIC_APP_URL) {
-  throw new Error('Missing NEXT_PUBLIC_APP_URL environment variable');
-}
-
-const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+const appUrl = env.NEXT_PUBLIC_APP_URL;
 
 export const authClient = createAuthClient({
-  baseURL: process.env.NEXT_PUBLIC_APP_URL as string,
+  baseURL: env.NEXT_PUBLIC_APP_URL as string,
 });
 
 export const signInWithGithub = async () => {
