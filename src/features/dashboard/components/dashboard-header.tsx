@@ -34,8 +34,9 @@ export function DashboardHeader() {
         </div>
       )}
       {pathName === paths.dashboard.jobs.getHref() && (
-        <div className="p-5 border-b border-dark-500">
-          <h3 className="">Job Search</h3>
+        <div className="p-5 border-b border-dark-500 flex items-center justify-between">
+          <h3 className="font-fraunces">Job Search</h3>
+          <p className='font-mono text-xs hidden lg:block'>synced from LinkedIn · Indeed · JobStreet · company sites</p>
         </div>
       )}
       {pathName === paths.dashboard.resume.getHref() && (
