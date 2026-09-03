@@ -10,7 +10,7 @@ const buttonVariants = cva(
       variant: {
         primary: 'bg-signal text-void hover:brightness-110 hover:text-void active:brightness-100',
         secondary: 'border border-hairline bg-white text-void hover:bg-white/90',
-        outline: 'border border-hairline bg-transparent text-ink hover:bg-surface-100 hover:border-signal/40',
+        outline: 'border border-hairline bg-transparent text-ink hover:border-signal hover:text-signal',
         ghost: 'text-ink-muted',
         link: 'h-auto p-0 text-signal underline-offset-4 hover:underline',
         signal: 'border border-signal/30 bg-signal/10 text-signal hover:bg-signal/15',

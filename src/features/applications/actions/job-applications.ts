@@ -4,7 +4,7 @@ import {
   type ApplicationInput,
   ApplicationSchema,
   type ApplicationStage,
-} from '@/validators/application';
+} from '@/types/validators/application';
 
 export async function requireUser() {
   const session = await getSession();

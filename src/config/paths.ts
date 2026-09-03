@@ -30,7 +30,7 @@ export const paths = {
       getHref: () => '/dashboard',
     },
     jobs: {
-      getHref: () => '/jobs',
+      getHref: () => '/jobs-search',
     },
     resume: {
       getHref: () => '/resume',

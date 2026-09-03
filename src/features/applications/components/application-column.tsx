@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { ApplicationForm as EditForm } from './application-form';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { type Application, ApplicationStage } from '@/validators/application';
+import { type Application, ApplicationStage } from '@/types/validators/application';
 import { ApplicationDropdownMenu } from './application-dropdown-menu';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Modal, ModalContent, ModalHeader, ModalTitle, ModalDescription } from '@/components/ui/modal';

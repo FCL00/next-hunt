@@ -5,7 +5,7 @@ import { cn } from '@/utils/cn';
 export type LinkProps = {
   className?: string;
   children: React.ReactNode;
-} & NextLinkProps;
+} & NextLinkProps & Omit<React.ComponentPropsWithRef<'a'>, keyof NextLinkProps>;
 
 export const Link = ({ className, children, href, ...props }: LinkProps) => {
   return (

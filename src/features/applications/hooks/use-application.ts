@@ -8,7 +8,7 @@ import {
   updateApplicationStage,
   getApplicationById,
 } from '../actions/job-applications';
-import { ApplicationStage, type ApplicationInput } from '@/validators/application';
+import { ApplicationStage, type ApplicationInput } from '@/types/validators/application';
 import { toast } from 'sonner';
 
 export const applicationQueryKey = ['applications'] as const;

@@ -5,7 +5,7 @@ import { FormInput } from '@/components/ui/forms';
 import { paths } from '@/config/paths';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { type SignInInput, signInInputSchema } from '@/validators/auth';
+import { type SignInInput, signInInputSchema } from '@/types';
 import { signIn, signInWithGithub } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';

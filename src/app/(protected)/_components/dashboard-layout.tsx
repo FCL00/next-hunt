@@ -5,8 +5,8 @@ import { DashboardHeader } from '@/features/dashboard/components/dashboard-heade
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-dashboard">
-      <div className="left border-r border-dark-500 min-h-screen">
+    <div className="grid grid-cols-1 lg:grid-cols-dashboard">
+      <div className="left hidden lg:block border-r border-dark-500 min-h-screen">
         <div className="p-4 border-b border-dark-500">
           <div className="flex items-center gap-2 mx-auto">
             <Waypoints />
