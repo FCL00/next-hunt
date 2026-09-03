@@ -18,7 +18,7 @@
   </a>
 </p>
 
-A job hunt tracker for people who are tired of losing track of applications in a spreadsheet. Every application lives on a pipeline — Applied, Screening, Interview, Offer — with interviews, notes, and follow-up reminders attached to it instead of scattered across tabs.
+A job hunt tracker for people who are tired of losing track of applications in a spreadsheet. Every application lives on a pipeline  Applied, Screening, Interview, Offer  with interviews, notes, and follow-up reminders attached to it instead of scattered across tabs.
 
 ## Screenshots
 
@@ -44,7 +44,7 @@ A job hunt tracker for people who are tired of losing track of applications in a
 - Search external listings via a job search API
 - Save/track a listing directly into the pipeline
 - Manually add a job by pasting a URL, for postings outside the search index
-- Apply, Track application, and Build resume actions per listing (resume generation is a stub — not yet implemented)
+- Apply, Track application, and Build resume actions per listing (resume generation is a stub  not yet implemented)
 
 ### Auth & email
 - Authentication via better-auth
@@ -107,7 +107,7 @@ The app runs at `http://localhost:3000`.
 
 ## Project structure
 
-Feature-based structure — each feature owns its own components, API calls, hooks, and server actions, rather than splitting by technical layer across the whole app.
+Feature-based structure  each feature owns its own components, API calls, hooks, and server actions, rather than splitting by technical layer across the whole app.
 
 ```
 src/
@@ -147,11 +147,11 @@ src/
   utils/
 ```
 
-Note: `job` currently only has a `types/` entry, not a full `features/job/` slice like `application` does — worth deciding whether job search logic gets its own feature folder as it grows, to stay consistent with the pattern.
+Note: `job` currently only has a `types/` entry, not a full `features/job/` slice like `application` does  worth deciding whether job search logic gets its own feature folder as it grows, to stay consistent with the pattern.
 
 ## Testing
 
-Mock Service Worker (MSW) intercepts network requests instead of hitting a real API during development/testing — handlers live in `testing/__mocks__/handlers`, fixture data in `testing/__mocks__/data`. `browser.ts` registers the worker for the browser (dev mode), `server.ts` registers it for Node (test runs).
+Mock Service Worker (MSW) intercepts network requests instead of hitting a real API during development/testing  handlers live in `testing/__mocks__/handlers`, fixture data in `testing/__mocks__/data`. `browser.ts` registers the worker for the browser (dev mode), `server.ts` registers it for Node (test runs).
 
 ```bash
 # start Storybook
@@ -160,3 +160,10 @@ pnpm storybook
 # run tests
 pnpm test
 ```
+
+## Displaying and Previewing Emails
+To view and test your email components in a local, interactive development dashboard, run the custom preview script. This points directly to our emails directory:
+```
+pnpm email:dev
+```
+<img src="./public/next-hunt-email.png" alt="landing page" width="500px" height="300px">
