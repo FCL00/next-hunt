@@ -5,10 +5,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { resetPassword } from '@/lib/auth-client';
 import { paths } from '@/config/paths';
-import { type ResetPasswordInput, resetPasswordInputSchema } from '@/validators/auth';
+import { type ResetPasswordInput, resetPasswordInputSchema } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/forms';
+import { FormInput } from '@/components/ui/forms';
 
 export default function ResetForm() {
   const searchParams = useSearchParams();
@@ -25,7 +25,7 @@ export default function ResetForm() {
   const onSubmit = async (credentials: ResetPasswordInput) => {
     if (!token) {
       toast.error('Invalid or expired password reset link.');
-      router.push(paths.auth.forgotPassword.getHref());
+      router.replace(paths.auth.forgotPassword.getHref());
       return;
     }
     await resetPassword({
@@ -51,14 +51,14 @@ export default function ResetForm() {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Input
+          <FormInput
             type="password"
             label="Password"
             registration={register('password')}
             error={errors.password}
             placeholder="••••••••"
           />
-           <Input
+           <FormInput
             type="password"
             label="Confirm Password"
             registration={register('confirmPassword')}

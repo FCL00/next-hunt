@@ -1,9 +1,9 @@
 'use client';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/forms';
+import { FormInput } from '@/components/ui/forms';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { type ForgotInput, forgotPasswordInputSchema } from '@/validators/auth';
+import { type ForgotInput, forgotPasswordInputSchema } from '@/types';
 import { Card, CardContent } from '@/components/ui/card';
 import { requestPasswordReset } from '@/lib/auth-client';
 import { paths } from '@/config/paths';
@@ -42,7 +42,7 @@ export default function ForgotForm() {
             <p>Enter your email to recieve a password reset link</p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Input
+            <FormInput
               type="email"
               label="Email"
               registration={register('email')}

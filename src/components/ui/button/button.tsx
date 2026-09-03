@@ -8,17 +8,18 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        primary: 'bg-signal text-void hover:brightness-110 active:brightness-100',
+        primary: 'bg-signal text-void hover:brightness-110 hover:text-void active:brightness-100',
         secondary: 'border border-hairline bg-white text-void hover:bg-white/90',
-        outline: 'border border-hairline bg-transparent text-ink hover:bg-surface-100 hover:border-signal/40',
+        outline: 'border border-hairline bg-transparent text-ink hover:border-signal hover:text-signal',
         ghost: 'text-ink-muted',
         link: 'h-auto p-0 text-signal underline-offset-4 hover:underline',
         signal: 'border border-signal/30 bg-signal/10 text-signal hover:bg-signal/15',
         destructive: 'border border-red-500/30 bg-red-500/10 text-red-400 hover:bg-red-500/15',
+        unstyled: 'p-0 h-auto rounded-none font-normal bg-transparent border-0 text-inherit hover:bg-transparent',
       },
       size: {
-        default: 'h-10 px-5 text-[13.5px]',
         sm: 'h-8 rounded px-3.5 text-xs',
+        md: 'h-10 px-5 text-[13.5px]',
         lg: 'h-12 px-7 text-sm',
       },
       disabled: {
@@ -50,15 +51,14 @@ const buttonVariants = cva(
     ],
     defaultVariants: {
       variant: 'primary',
-      size: 'default',
+      size: 'md',
     },
   },
 );
 
 type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
-export type ButtonProps =
-  React.ButtonHTMLAttributes<HTMLButtonElement> &
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   ButtonVariantProps & {
     asChild?: boolean;
     isLoading?: boolean;
@@ -76,12 +76,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <Component
-        className={cn(buttonVariants({ variant, size, disabled: !!isDisabled, className }))}
+        className={cn(buttonVariants({ variant, size, disabled: !!isDisabled }), className)}
         ref={ref}
         disabled={isDisabled}
         {...props}
       >
-        {isLoading ? (
+        {asChild ? (
+          children
+        ) : isLoading ? (
           'Loading...'
         ) : (
           <>

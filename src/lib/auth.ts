@@ -2,7 +2,8 @@ import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { PrismaMariaDb } from '@prisma/adapter-mariadb';
 import { PrismaClient } from '@/lib/generated/prisma/client';
-import { sendForgotPasswordEmail, sendVerificationEmail } from '@/lib/email';
+import { sendForgotPasswordEmail, sendVerificationEmail, sendWelcomeEmail } from '@/lib/email';
+import { headers } from 'next/headers';
 
 const adapter = new PrismaMariaDb({
   host: process.env.DATABASE_HOST_NAME as string,
@@ -13,7 +14,7 @@ const adapter = new PrismaMariaDb({
   database: process.env.DATABASE_NAME,
 });
 
-const prisma = new PrismaClient({ adapter });
+export const prisma = new PrismaClient({ adapter });
 export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
@@ -23,17 +24,37 @@ export const auth = betterAuth({
     },
   },
   emailVerification: {
-    sendVerificationEmail: async({ user, url }) => {
-      void sendVerificationEmail({ email: user.email, name: user.name, url})
-    }
+    sendVerificationEmail: async ({ user, url }) => {
+      void sendVerificationEmail({ email: user.email, name: user.name, url });
+    },
   },
-  // socialProviders: {
-  //   github: {
-  //     clientId: process.env.GITHUB_CLIENT_ID as string,
-  //     clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
-  //   }
-  // },
+  socialProviders: {
+    github: {
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    },
+  },
+  // NOTE: currently not available in local
+  databaseHooks: {
+    user: {
+      create: {
+        after: async (user) => {
+          void sendWelcomeEmail({
+            email: user.email,
+            name: user.name,
+          });
+        },
+      },
+    },
+  },
   database: prismaAdapter(prisma, {
     provider: 'mysql', // or "mysql", "postgresql", ...etc
   }),
 });
+
+export const getSession = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  return session;
+};

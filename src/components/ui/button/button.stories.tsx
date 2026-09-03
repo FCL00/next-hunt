@@ -2,7 +2,7 @@ import { Button, type ButtonVariants, type ButtonSize } from './button';
 import { type Meta, type StoryObj } from '@storybook/nextjs-vite';
 import { Waypoints } from 'lucide-react';
 
-const sizeOptions: ButtonSize[] = ['default', 'sm', 'lg'];
+const sizeOptions: ButtonSize[] = ['sm', 'md', 'lg'];
 const variantsOptions: ButtonVariants[] = ['primary', 'secondary', 'outline', 'ghost', 'link', 'signal', 'destructive'];
 
 const meta = {
@@ -39,7 +39,7 @@ type Story = StoryObj<typeof Button>;
 export const Default = {
   args: {
     variant: 'primary',
-    size: 'default',
+    size: 'md',
   },
 } satisfies Story;
 
@@ -101,6 +101,6 @@ export const IconOnly = {
   args: {
     children: null,
     icon: <Waypoints />,
-    size: 'default',
+    size: 'md',
   },
 } satisfies Story;
