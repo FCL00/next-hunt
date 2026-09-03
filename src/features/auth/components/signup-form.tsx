@@ -3,7 +3,7 @@ import { paths } from '@/config/paths';
 import { Link } from '@/components/ui/link';
 import { Button } from '@/components/ui/button';
 import { FormInput } from '@/components/ui/forms';
-import { type SignUpInput, signUpInputSchema } from '@/validators/auth';
+import { type SignUpInput, signUpInputSchema } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { signUp } from '@/lib/auth-client';

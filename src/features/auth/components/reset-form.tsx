@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { resetPassword } from '@/lib/auth-client';
 import { paths } from '@/config/paths';
-import { type ResetPasswordInput, resetPasswordInputSchema } from '@/validators/auth';
+import { type ResetPasswordInput, resetPasswordInputSchema } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { FormInput } from '@/components/ui/forms';
