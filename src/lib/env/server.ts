@@ -17,7 +17,7 @@ const createEnv = () => {
     JOB_SEARCH_API_URL: z.string().default('http://localhost:8000'),
     JOB_SEARCH_API_KEY: z.string().min(1),
     JOB_SEARCH_API_HOST: z.string().min(1),
-    GOOGLE_GEMINI_API_KEY: z.string().min(1),
+    CODING_AGENT_API_KEY: z.string().min(1),
   });
   const result = serverEnvSchema.safeParse(process.env);
   if (!result.success) {
