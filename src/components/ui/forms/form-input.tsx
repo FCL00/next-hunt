@@ -12,9 +12,11 @@ export type FormInputProps = React.InputHTMLAttributes<HTMLInputElement> &
 
 const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
   ({ className, type, label, id, error, registration, required, ...props }, ref) => {
+    const inputId = id ?? registration.name;
     return (
-      <Field id={id} label={label} error={error} required={required}>
+      <Field id={inputId} label={label} error={error} required={required}>
         <input
+          id={inputId}
           type={type}
           autoComplete='off'
           className={cn(
