@@ -1,15 +1,9 @@
 import { resend } from '@/lib/resend';
 import { ForgotPasswordEmail, WelcomeEmail, VerificationEmail } from '@/components/emails';
+import { env } from '@/lib/env/client';
 
-if (!process.env.NEXT_PUBLIC_APP_NAME) {
-  throw new Error('Missing NEXT_PUBLIC_APP_NAME environment variable');
-}
-if (!process.env.NEXT_PUBLIC_APP_URL) {
-  throw new Error('Missing NEXT_PUBLIC_APP_URL environment variable');
-}
-
-const appName = process.env.NEXT_PUBLIC_APP_NAME;
-const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+const appName = env.NEXT_PUBLIC_APP_NAME;
+const appUrl = env.NEXT_PUBLIC_APP_URL;
 
 interface SendEmailProps {
   email: string;

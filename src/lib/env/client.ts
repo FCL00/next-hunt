@@ -8,6 +8,7 @@ const clientEnvSchema = z.object({
     .transform((value) => value === 'true'),
 
   NEXT_PUBLIC_MOCK_API_PORT: z.coerce.number().default(8080),
+  NODE_ENV: z.enum(['development', 'production', 'test']).default('development')
 });
 
 const clientEnv = {
@@ -15,6 +16,7 @@ const clientEnv = {
   NEXT_PUBLIC_APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,
   NEXT_PUBLIC_ENABLE_API_MOCKING: process.env.NEXT_PUBLIC_ENABLE_API_MOCKING,
   NEXT_PUBLIC_MOCK_API_PORT: process.env.NEXT_PUBLIC_MOCK_API_PORT,
+  NODE_ENV: process.env.NODE_ENV,
 };
 
 const result = clientEnvSchema.safeParse(clientEnv);
