@@ -9,22 +9,25 @@ import { type ResetPasswordInput, resetPasswordInputSchema } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { FormInput } from '@/components/ui/forms';
+import { useTranslations } from 'next-intl';
 
 export default function ResetForm() {
   const searchParams = useSearchParams();
   const token = searchParams.get('token');
   const router = useRouter();
+  const t = useTranslations('auth');
+  const schema = resetPasswordInputSchema(t);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ResetPasswordInput>({
-    resolver: zodResolver(resetPasswordInputSchema),
+    resolver: zodResolver(schema),
   });
 
   const onSubmit = async (credentials: ResetPasswordInput) => {
     if (!token) {
-      toast.error('Invalid or expired password reset link.');
+      toast.error(t('notification-reset-failed'));
       router.replace(paths.auth.forgotPassword.getHref());
       return;
     }
@@ -36,7 +39,7 @@ export default function ResetForm() {
           toast.error(ctx.error.message);
         },
         onSuccess: () => {
-          toast.success('Password reset successfully!');
+          toast.success(t('notification-reset-successful'));
           router.replace(paths.auth.signIn.getHref());
         },
       },
@@ -45,27 +48,29 @@ export default function ResetForm() {
 
   return (
     <Card>
-      <CardHeader className='mb-4'>
-        <CardTitle className='text-2xl'>Reset Password</CardTitle>
-        <CardDescription>Enter a strong new password to secure your account.</CardDescription>
+      <CardHeader className="mb-4">
+        <CardTitle className="text-2xl">{t('reset-password-heading')}</CardTitle>
+        <CardDescription>{t('reset-password-subheading')}</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             type="password"
-            label="Password"
+            label={t('forms-password-label')}
             registration={register('password')}
             error={errors.password}
-            placeholder="••••••••"
+            placeholder={t('forms-password-placeholder')}
           />
-           <FormInput
+          <FormInput
             type="password"
-            label="Confirm Password"
+            label={t('forms-confirm-password')}
             registration={register('confirmPassword')}
             error={errors.confirmPassword}
-            placeholder="••••••••"
+            placeholder={t('forms-password-placeholder')}
           />
-          <Button className='w-full' type="submit">Reset Your Password</Button>
+          <Button className="w-full" type="submit">
+            {t('reset-password-label')}
+          </Button>
         </form>
       </CardContent>
     </Card>

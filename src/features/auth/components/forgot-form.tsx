@@ -8,14 +8,17 @@ import { Card, CardContent } from '@/components/ui/card';
 import { requestPasswordReset } from '@/lib/auth-client';
 import { paths } from '@/config/paths';
 import { toast } from 'sonner';
+import { useTranslations } from 'next-intl';
 
 export default function ForgotForm() {
+  const t = useTranslations('auth');
+  const schema = forgotPasswordInputSchema(t);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ForgotInput>({
-    resolver: zodResolver(forgotPasswordInputSchema),
+    resolver: zodResolver(schema),
   });
 
   const onSubmit = async (credentials: ForgotInput) => {
@@ -27,7 +30,7 @@ export default function ForgotForm() {
           toast.error(ctx.error.message);
         },
         onSuccess: () => {
-          toast.success('Password reset email sent. Please check your inbox.');
+          toast.success(t('notification-forgot-successful'));
         },
       },
     });
@@ -38,19 +41,19 @@ export default function ForgotForm() {
       <Card>
         <CardContent>
           <div className="mb-4">
-            <h3 className="text-xl font-frances">Forgot Password?</h3>
-            <p>Enter your email to recieve a password reset link</p>
+            <h3 className="text-xl font-frances">{t('login-forgot-password')}</h3>
+            <p>{t('forms-reset-password-placeholder')}</p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormInput
               type="email"
-              label="Email"
+              label={t('forms-email-label')}
               registration={register('email')}
               error={errors.email}
-              placeholder="you@example.com"
+              placeholder={t('forms-email-placeholder')}
             />
             <Button className="w-full" type="submit">
-              Send Reset Link
+              {t('reset-password-label')}
             </Button>
           </form>
         </CardContent>

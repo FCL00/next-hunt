@@ -9,22 +9,25 @@ import { useForm } from 'react-hook-form';
 import { signUp } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { useTranslations } from 'next-intl';
 
 export default function SignUpForm() {
   const router = useRouter();
+  const t = useTranslations('auth');
+  const schema = signUpInputSchema(t);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpInput>({
-    resolver: zodResolver(signUpInputSchema),
+    resolver: zodResolver(schema),
   });
 
   const onSubmit = async (data: SignUpInput) => {
     const { confirmPassword, ...credentials } = data;
     await signUp.email(credentials, {
       onSuccess: () => {
-        toast.success('Successfully created an account!');
+        toast.success(t('notification-register-successful'));
         router.push(paths.auth.signIn.getHref());
       },
       onError: (ctx) => {
@@ -35,49 +38,48 @@ export default function SignUpForm() {
 
   return (
     <div className="sm:w-full md:max-w-md lg:max-w-lg">
-      <h1 className="max-w-sm">Get Started!</h1>
+      <h1 className="max-w-sm">{t('register-heading')}</h1>
       <p className="mb-8 text-[14px] text-ink-100">
-        Already have an Account?{' '}
+        {t('register-existing-account')}{' '}
         <Link className="text-ink-50 border-b border-b-ink-50" href={paths.auth.signIn.getHref()}>
-          Login in here
+          {t('login-here')}
         </Link>
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           type="text"
-          label="Name"
+          label={t('forms-username-label')}
           registration={register('name')}
           error={errors.name}
-          placeholder="Enter your display name"
+          placeholder={t('forms-username-placeholder')}
         />
-        <FormInput type="email" label="Email" registration={register('email')} error={errors.email} placeholder="you@example.com" />
+        <FormInput
+          type="email"
+          label={t('forms-email-label')}
+          registration={register('email')}
+          error={errors.email}
+          placeholder={t('forms-email-placeholder')}
+        />
         <FormInput
           type="password"
-          label="Password"
+          label={t('forms-password-label')}
           registration={register('password')}
           error={errors.password}
-          placeholder="••••••••"
+          placeholder={t('forms-password-placeholder')}
         />
         <FormInput
           type="password"
-          label="Confirm Password"
+          label={t('forms-confirm-password')}
           registration={register('confirmPassword')}
           error={errors.confirmPassword}
-          placeholder="••••••••"
+          placeholder={t('forms-password-placeholder')}
         />
         <Button type="submit" className="w-full text-[14.5px] p-[13px_16px]">
-          Create Account
+          {t('register-create-account')}
         </Button>
         <div className="mt-7 text-[12px] text-ink-200 leading-[1.6] text-center">
-          By continuing you agree to Meridian's{' '}
-          <Link href={'/terms'}>
-            Terms
-          </Link>{' '}
-          and{' '}
-          <Link href="/privacy">
-            Privacy Policy
-          </Link>
-          .
+          {t('misc-label')}
+          <Link href={'/terms'}>{t('misc-terms-label')}</Link> and <Link href="/privacy">{t('misc-policy-label')}</Link>.
         </div>
       </form>
     </div>
