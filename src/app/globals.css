@@ -116,7 +116,7 @@
     @apply text-[16px] text-ink-muted leading-relaxed;
   }
 
-  h1 > span {
+  h1 > em {
     @apply italic text-signal;
   }
 
