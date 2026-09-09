@@ -1,0 +1,22 @@
+{
+  "app": {
+    "name": "{name}",
+    "greeting": "Welcome Come Back!"
+  },
+  "redirects": {
+    "home": "Go Back to the homepage"
+  },
+  "errors": {
+    "notFound": "404 Page Not Found"
+  },
+  "page": {
+    "section": {
+      "hero": {
+        "kicker": "{count} applications in motion right now",
+        "heading": "Every application, <br/> <em>exactly</em> where it stands.",
+        "subHeading": "NextHunt replaces the spreadsheet with a living pipeline so you always know what's applied, what's waiting on you, and what's gone quiet.",
+        "buttonCTA": "Start Tracking - Free"
+      }
+    }
+  }
+}

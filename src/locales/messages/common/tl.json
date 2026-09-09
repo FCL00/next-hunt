@@ -1,0 +1,22 @@
+{
+  "app": {
+    "name": "{name}",
+    "greeting": "Maligayang Pagbabalik!"
+  },
+  "redirects": {
+    "home": "Bumalik sa homepage"
+  },
+  "errors": {
+    "notFound": "404 Hindi Nahanap ang Pahina"
+  },
+  "page": {
+    "section": {
+      "hero": {
+        "kicker": "{count} na aplikasyon ang kasalukuyang pinoproseso ngayon",
+        "heading": "Bawat aplikasyon, <br/> <em>kung nasaan man ito eksakto</em>.",
+        "subHeading": "Pinapalitan ng NextHunt ang mga spreadsheet ng isang aktibong pipeline upang palagi mong alam kung ano ang na-apply na, ano ang naghihintay sa iyo, at ano ang mga natigil na.",
+        "buttonCTA": "Simulan ang Pagsubaybay - Libre"
+      }
+    }
+  }
+}

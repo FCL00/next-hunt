@@ -1,0 +1,22 @@
+{
+  "app": {
+    "name": "{name}",
+    "greeting": "¡Bienvenido de nuevo!"
+  },
+  "redirects": {
+    "home": "Volver a la página de inicio"
+  },
+  "errors": {
+    "notFound": "404 Página no encontrada"
+  },
+  "page": {
+    "section": {
+      "hero": {
+        "kicker": "{count} solicitudes en curso en este momento",
+        "heading": "Cada solicitud, <br/> <em>exactamente</em> donde corresponde.",
+        "subHeading": "NextHunt reemplaza las hojas de cálculo con un flujo de trabajo dinámico para que siempre sepas qué has enviado, qué espera por ti y qué se ha quedado en silencio.",
+        "buttonCTA": "Empezar a rastrear - Gratis"
+      }
+    }
+  }
+}
